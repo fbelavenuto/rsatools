@@ -72,6 +72,8 @@ def main():
             if len(factors) != 2:
                 raise ArgumentError(None, 'Impossible to factor online')
             p, q = factors
+            if p*q != n:
+                raise ArgumentError(None, 'Error factoring online')
         else:
             parser.print_usage()
             return

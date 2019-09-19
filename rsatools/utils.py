@@ -167,7 +167,10 @@ def brute_force(n, c, e):
 
 def factor_online(n):
     result = requests.get(FACTORDBAPI_URL, params={"query": str(n)})
-    factors = result.json().get("factors")
+    status = result.json().get('status')
+    if status != 'FF':
+        return []
+    factors = result.json().get('factors')
     if not factors:
         return []
     ml = [[int(x)] * y for x, y in factors]
